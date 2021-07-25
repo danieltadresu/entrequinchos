@@ -4,6 +4,38 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Toolbar from "@material-ui/core/Toolbar";
 import PropTypes from "prop-types";
+
+// const useStyles = makeStyles(theme => ({
+//   animatedItem: {
+//     animation: `$myEffect 3000ms ${theme.transitions.easing.easeInOut}`
+//   },
+//   animatedItemExiting: {
+//     animation: `$myEffectExit 3000ms ${theme.transitions.easing.easeInOut}`,
+//     opacity: 0,
+//     transform: "translateY(-200%)"
+//   },
+//   "@keyframes myEffect": {
+//     "0%": {
+//       opacity: 0,
+//       transform: "translateY(-200%)"
+//     },
+//     "100%": {
+//       opacity: 1,
+//       transform: "translateY(0)"
+//     }
+//   },
+//   "@keyframes myEffectExit": {
+//     "0%": {
+//       opacity: 1,
+//       transform: "translateY(0)"
+//     },
+//     "100%": {
+//       opacity: 0,
+//       transform: "translateY(-200%)"
+//     }
+//   }
+// }));
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -16,12 +48,38 @@ const useStyles = makeStyles((theme) => ({
     transition: "all 0.3s ease-out",
   },
   modalOpen: {
-    opacity: 1,
-    transform: "translateY(0)",
+    animation: `$modalOpen 0.4s ease-out forwards`,
   },
   modalClosed: {
-    opacity: 0,
-    transform: "translateY(-100%)",
+    animation: `$modalClosed 0.4s ease-out forwards`,
+  },
+  "@keyframes modalOpen": {
+    "0%": {
+      opacity: 0,
+      transform: "translateY(-100%)",
+    },
+    "50%": {
+      opacity: 1,
+      transform: "translateY(90%)",
+    },
+    "100%": {
+      opacity: 1,
+      transform: "translateY(0)",
+    },
+  },
+  "@keyframes modalClosed": {
+    "0%": {
+      opacity: 1,
+      transform: "translateY(0)",
+    },
+    "50%": {
+      opacity: 0.8,
+      transform: "translateY(60%)",
+    },
+    "100%": {
+      opacity: 0,
+      transform: "translateY(-100%)",
+    },
   },
 }));
 
@@ -35,7 +93,6 @@ const Home = ({ visible }) => {
   }, [visible]);
 
   useEffect(() => {
-    // setVisible(true);
     setAnimate((prevState) => !prevState);
   }, []);
 
